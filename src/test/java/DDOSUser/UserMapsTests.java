@@ -1,15 +1,13 @@
-import org.junit.jupiter.api.*;
+package DDOSUser;
 
+import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
-
-import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DDOSUserTest {
+public class UserMapsTests {
     private static long startTests;
     private long startTestTime;
 
@@ -45,20 +43,6 @@ public class DDOSUserTest {
         System.out.println("users.db exists\n" + "server.log exists");
     }
 
-    //В этом тесте я продублировал код поскольку строк много вручную считать глупо
-    @Test
-    void maxConnections() throws IOException {
-        String serverLog = "src\\main\\resources\\server.log";
-        Map<String, Integer> connectsMap = Main.readServersLog(serverLog, new UsersMaps());
-        int max = 0;
-        for (Map.Entry<String, Integer> entry : connectsMap.entrySet()) {
-            if (max < entry.getValue()) {
-                max = entry.getValue();
-            }
-        }
-        assertEquals(210, max);
-        assertThat(max, equalTo(210));//harmcrest
-    }
 
     @Test
     void userMapNotEmpty() throws FileNotFoundException {
@@ -72,9 +56,9 @@ public class DDOSUserTest {
     void hasItem() throws FileNotFoundException {
         String usersDb = "src\\main\\resources\\users.db";
         UsersMaps usersMaps = new UsersMaps();
-        User targetUser = new User("1844512", "Данилов Петр Михайлович", "Ярославль,Ленина,15,3");
         Main.readUsersFromFile(usersDb, usersMaps);
-        assertThat(usersMaps.getUsersMap(), hasKey("1844512"));
-        assertThat(usersMaps.getUsersMap(), hasValue(hasProperty("id")));
+
+        MatcherAssert.assertThat(usersMaps.getUsersMap(), hasKey("1844512"));
+        MatcherAssert.assertThat(usersMaps.getUsersMap(), hasValue(hasProperty("id")));
     }
 }

@@ -1,1 +1,3 @@
-DDOSUserTest.class
+DDOSUser\UserMapsTests.class
+Figure\CircleTests.class
+Figure\PointTests.class

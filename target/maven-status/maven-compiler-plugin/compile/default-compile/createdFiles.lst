@@ -1,3 +1,11 @@
-Main.class
-UsersMaps.class
-User.class
+Figure\Color.class
+Figure\Main.class
+Figure\FigureName\Rectangle.class
+Figure\Figure.class
+DDOSUser\UsersMaps.class
+Figure\Point.class
+DDOSUser\User.class
+DDOSUser\Main.class
+Figure\FigureName\Triangle.class
+Figure\FigureName\Circle.class
+Figure\FigureName\Line.class
